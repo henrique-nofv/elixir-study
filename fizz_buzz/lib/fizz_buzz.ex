@@ -20,12 +20,14 @@ defmodule FizzBuzz do
   end
 
   defp handle_file{:ok, result} do
-    result
+    result = result
     |> String.split(",")
     |> Enum.map(&convert_and_evaluate/1)
+
+    {:ok, result}
   end
 
-  defp handle_file{:error, reason} do "Failed, reason: #{reason}" end
+  defp handle_file{:error, reason} do {:error, "Failed, reason: #{reason}"} end
 
   defp convert_and_evaluate(elem) do
     elem
